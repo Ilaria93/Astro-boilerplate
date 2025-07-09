@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Microfrontend Demo">
+  <main>
+    <h1>Demo Microfrontend</h1>
+    
+    <section>
+      <h2>Microfrontend Vue</h2>
+      <vue-microfrontend></vue-microfrontend>
+    </section>
+
+    <section>
+      <h2>Microfrontend React</h2>
+      <react-microfrontend></react-microfrontend>
+    </section>
+
+    <section>
+      <h2>Microfrontend Next.js</h2>
+      <iframe 
+        src="http://localhost:3000" 
+        width="100%" 
+        height="500px"
+        style="border: 1px solid #eee; border-radius: 8px;"
+      ></iframe>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  section {
+    margin: 2rem 0;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+  }
+
+  .vue-microfrontend,
+  .react-microfrontend {
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+  }
+
+  .btn-increment {
+    padding: 0.5rem 1rem;
+    background-color: #42b983;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btn-increment:hover {
+    background-color: #3aa876;
+  }
+</style>
+
+<script>
+  // Carichiamo i microfrontend
+  const loadMicrofrontend = (src: string): void => {
+    const script = document.createElement('script');
+    script.src = src;
+    document.head.appendChild(script);
+  };
+
+  loadMicrofrontend('http://localhost:3000/vue-microfrontend.js');
+  loadMicrofrontend('http://localhost:3000/react-microfrontend.js');
+</script> 

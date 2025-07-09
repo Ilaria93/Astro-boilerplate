@@ -1,0 +1,25 @@
+image: node:20
+
+stages:
+  - build
+  - docker
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+  - npm ci
+
+build:
+  stage: build
+  script:
+    - npm run build
+
+docker-build:
+  stage: docker
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t my-astro-app .
